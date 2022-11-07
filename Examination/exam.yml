@@ -1,0 +1,212 @@
+---
+- name: laravel app deployment
+  hosts: all
+  become: true
+ 
+  tasks:
+# INSTALLING APACHE2
+
+#  - name: update and upgrade apt packages
+#    apt:
+#      update_cache: yes
+#      upgrade: yes
+
+#  - name: install apache2
+#    apt:
+#      name: apache2
+#      state: latest
+
+#  - name: run apache2
+#    service:
+#      name: apache2
+#      state: started
+
+# INSTALLING PHP 8.1 AND DEPENDENCIES
+
+#  - name: get php repository
+#    apt_repository:
+#      repo: ppa:ondrej/php
+#      state: present
+
+#  - name: ugrade apt cache
+#    register: updatesys  
+#    apt:
+#      name: "*"
+#      state: latest     
+#      update_cache: yes
+      
+#  - name: install php8.1 with dependencies
+#    apt: 
+#      name:
+#        - ca-certificates
+#        - apt-transport-https
+#        - software-properties-common
+#        - php
+#        - libapache2-mod-php
+#        - php-mysql
+#        - php-xml
+#        - php-curl
+#        - php-gd
+#        - php-dev
+#        - php-mbstring
+#        - php-zip
+#      state: latest
+#      update_cache: yes    
+
+#  INSTALLING, CONFIGURING AND SETTING UP MYSQL
+
+#  - name: install mysql
+#    apt:
+#      name: 
+#        - mysql-server
+#        - mysql-client
+#        - python3-mysqldb
+#        - python3-pymysql 
+#      state: present
+#      update_cache: yes
+
+#  - name: start mysql
+#    service:
+#      name: mysql
+#      state: started
+#      enabled: yes
+ 
+#  - name: create mysql user
+#    mysql_user:
+#      login_unix_socket: /var/run/mysqld/mysqld.sock
+#      name: "yomi"
+#      password: yomibaby
+#      login_user: root
+#      login_password: "yomibaby" 
+#      priv: '*.*:ALL'
+#      host: '%'
+#      state: present
+
+#  - name: set root password
+#    mysql_user:
+#      name: root
+#      password: "yomibaby"
+#      priv: "*.*:ALL"
+#      state: present 
+#      login_unix_socket: /var/run/mysqld/mysqld.sock
+
+#  - name: create mysql database
+#    mysql_db:
+#      name: "exam_db" 
+#      state: present
+#      login_user: root
+#      login_password: "yomibaby"
+
+
+# SETTING UP UFW RULES
+
+#  - name: ufw allow http
+#    ufw: 
+#      rule: allow
+#      port: http
+
+#  - name: ufw allow https
+#    ufw: 
+#      rule: allow
+#      port: https
+
+#  - name: ufw allow openssh
+#    ufw:
+#      rule: allow
+#      name: OpenSSH
+
+#  - name: allow access to tcp port 80
+#    ufw:
+#      rule: allow
+#      port: 80
+#      proto: tcp
+
+
+# DOWNLOADING COMPOSER, SETTING COMPOSER PATH
+    
+#  - name: get composer
+#    shell: curl -sS https://getcomposer.org/installer|php
+#    args:
+#      chdir: /usr/src
+#      creates: /usr/local/bin/composer
+#      warn: false
+
+#  - name: Change composer path
+#    copy:
+#      src: /usr/src/composer.phar
+#      dest: /usr/local/bin/composer
+#      group: root
+#      mode: "0755"
+#      remote_src: yes
+
+# GIT CLONE LARAVEL EXAMPLE APP
+         
+#  - name: install git
+#    apt:
+#      name: git
+#      state: present
+#      update_cache: yes
+
+#  - name: git clone laravel app
+#    git:
+#      repo: https://github.com/f1amy/laravel-realworld-example-app.git
+#      dest: /var/www/laravel/
+#      clone: yes
+    
+#  - name: install composer
+#    shell: 
+#      cmd: composer install --no-interaction
+#      chdir: /var/www/laravel
+      
+#  - name:
+#    shell: 
+#      cmd: mv /var/www/laravel /var/www/html/
+      
+#  - name: change .env file
+#    copy:
+#      src: .env
+#      dest: /var/www/html/laravel/ 
+#  - name: change file permissions
+#    shell:
+#      cmd: sudo chown -R www-data:www-data /var/www/html/laravel
+
+#  - name: change file permission
+#    shell:
+#      cmd: sudo chmod -R 775 /var/www/html/laravel/storage
+
+#  - name: Generate key
+#    args: 
+#      chdir: /var/www/html/laravel/
+#    shell: php artisan key:generate
+     
+#  - name: Migrate key
+#    shell: php artisan migrate --seed 
+#    args:
+#      chdir: /var/www/html/laravel/
+    
+#  - name: update web.php
+#    ansible.builtin.copy:
+#      dest: /var/www/html/laravel/routes/web.php
+#      content: |
+#        <?php
+
+#        Route::get('/', function () {
+#            return view('welcome');
+#        });
+
+#  - name: create laravel.conf
+#    copy: 
+#      src: laravel.conf 
+#      dest: /etc/apache2/sites-available/
+
+# DISABLE DEFAULT APACHE, RESTART APACHE
+
+#  - name: Disable Default Apache Site
+#    shell: a2dissite 000-default.conf
+#  - name: Enable laravel site
+#    shell: a2ensite laravel.conf 
+#  - name: Rewrite apache2 site
+#    shell: aeenmod rewrite
+#  - name: Reload Apache2
+#    shell: systemctl reload apache2
+ 

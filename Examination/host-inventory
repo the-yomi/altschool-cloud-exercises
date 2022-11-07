@@ -1,0 +1,7 @@
+[all]
+35.92.199.89
+#[host:vars]
+#ansible_user=ec2-user
+#ansible_ssh_private_key_file=~/ansible/examination2.pem
+#ansible_ssh_host=ec2-18-237-181-80.us-west-2.compute.amazonaws.com
+
